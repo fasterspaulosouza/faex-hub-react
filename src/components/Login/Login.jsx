@@ -1,15 +1,85 @@
 import { useState } from "react";
+import { Box, IconButton, InputAdornment } from "@mui/material";
 import {
-  Box,
-  Button,
-  Card,
-  IconButton,
-  InputAdornment,
-  Link,
-  TextField,
-  Typography,
-} from "@mui/material";
-import "./Login.css";
+  LoginContainer,
+  FloatingAvatars,
+  FloatingAvatar,
+  LoginCard,
+  Title,
+  StyledTextField,
+  LoginButton,
+  ForgotPasswordLink,
+} from "./Login.styles";
+import Avatar from "../Avatar/Avatar";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+
+const avatars = [
+  {
+    src: "/rosto_01.png",
+    alt: "Usuário 1",
+    color: "#f8c8d4",
+    size: 120,
+    top: "18%",
+    left: "6%",
+    delay: "0s",
+  },
+  {
+    src: "/rosto_02.png",
+    alt: "Usuário 2",
+    color: "#f4a6a0",
+    size: 85,
+    top: "6%",
+    right: "28%",
+    delay: "1s",
+  },
+  {
+    src: "/rosto_03.png",
+    alt: "Usuário 3",
+    color: "#f5b0a8",
+    size: 115,
+    top: "8%",
+    right: "4%",
+    delay: "2s",
+  },
+  {
+    src: "/rosto_04.png",
+    alt: "Usuário 4",
+    color: "#a8dbc5",
+    size: 55,
+    top: "42%",
+    right: "16%",
+    delay: "3s",
+  },
+  {
+    src: "/rosto_05.png",
+    alt: "Usuário 5",
+    color: "#c8b8e8",
+    size: 80,
+    top: "45%",
+    left: "16%",
+    delay: "1.5s",
+    hideOnMobile: true,
+  },
+  {
+    src: "/rosto_06.png",
+    alt: "Usuário 6",
+    color: "#b8dfc8",
+    size: 105,
+    bottom: "10%",
+    left: "5%",
+    delay: "2.5s",
+  },
+  {
+    src: "/rosto_07.png",
+    alt: "Usuário 7",
+    color: "#f0cfa0",
+    size: 130,
+    bottom: "8%",
+    right: "3%",
+    delay: "0.5s",
+    hideOnMobile: true,
+  },
+];
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,19 +96,35 @@ const Login = () => {
   };
 
   return (
-    <Box className="login-container">
-      <Box className="Avatar"></Box>
+    <LoginContainer>
+      <FloatingAvatars>
+        {avatars.map((avatar, index) => (
+          <FloatingAvatar
+            key={index}
+            $delay={avatar.delay}
+            $top={avatar.top}
+            $bottom={avatar.bottom}
+            $left={avatar.left}
+            $right={avatar.right}
+            $hideOnMobile={avatar.hideOnMobile}
+          >
+            <Avatar
+              src={avatar.src}
+              alt={avatar.alt}
+              color={avatar.color}
+              size={avatar.size}
+            />
+          </FloatingAvatar>
+        ))}
+      </FloatingAvatars>
 
-      <Card className="login-card">
+      <LoginCard elevation={0}>
         <img src="./public/logo-faex-hub.png" alt="Logo FAEX Hub" />
 
-        <Typography variant="h2" className="title">
-          Entre na sua Conta
-        </Typography>
+        <Title variant="h2">Entre na sua Conta</Title>
 
         <Box component="form" onSubmit={handleSubmit}>
-          <TextField
-            className="style-text-field"
+          <StyledTextField
             fullWidth
             label="Email"
             type="email"
@@ -49,8 +135,7 @@ const Login = () => {
             variant="outlined"
           />
 
-          <TextField
-            className="style-text-field"
+          <StyledTextField
             fullWidth
             label="Senha"
             type={mostrarSenha ? "text" : "password"}
@@ -59,44 +144,40 @@ const Login = () => {
             placeholder="Digite sua senha"
             required
             variant="outlined"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setMostrarSenha(!mostrarSenha)}
-                    edge="end"
-                    aria-label={
-                      mostrarSenha ? "Esconder senha" : "Mostrar senha"
-                    }
-                  >
-                    {mostrarSenha ? "🙈" : "👁️"}
-                  </IconButton>
-                </InputAdornment>
-              ),
+            slotProps={{
+              input: {
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setMostrarSenha(!mostrarSenha)}
+                      edge="end"
+                      aria-label={
+                        mostrarSenha ? "Ocultar senha" : "Mostrar senha"
+                      }
+                      sx={{ color: "#a0aec0" }}
+                    >
+                      {mostrarSenha ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              },
             }}
           />
 
-          <Button
-            className="login-button"
-            type="submit"
-            fullWidth
-            variant="contained"
-            size="large"
-          >
+          <LoginButton type="submit" fullWidth variant="contained" size="large">
             Entrar
-          </Button>
+          </LoginButton>
 
-          <Link
-            className="forgot-password-link"
+          <ForgotPasswordLink
             onClick={handleEsqueceuSenha}
             component="button"
             type="button"
           >
-            Esqueceu sua senha?
-          </Link>
+            Esqueceu seu senha?
+          </ForgotPasswordLink>
         </Box>
-      </Card>
-    </Box>
+      </LoginCard>
+    </LoginContainer>
   );
 };
 
