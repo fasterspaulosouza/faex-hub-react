@@ -1,5 +1,26 @@
+/**
+ * main.css - RESET CSS GLOBAL
+ *
+ * Este arquivo remove os estilos padrão que os navegadores aplicam automaticamente.
+ * Sem isso, cada navegador (Chrome, Firefox, Safari) aplicaria margens e
+ * paddings diferentes, deixando o layout inconsistente.
+ *
+ * Esse tipo de reset é uma boa prática em todo projeto web.
+ */
+
+/* O seletor "*" (asterisco) seleciona TODOS os elementos HTML da página. */
 * {
+  /* Remove margens externas padrão (espaço fora do elemento). */
   margin: 0;
+
+  /* Remove espaçamentos internos padrão (espaço dentro do elemento). */
   padding: 0;
+
+  /*
+   * "box-sizing: border-box" faz com que a largura e altura de um elemento
+   * INCLUAM padding e borda. Sem isso, um elemento com width: 100px e
+   * padding: 10px teria 120px de largura total. Com border-box, ele mantém 100px.
+   * Isso facilita MUITO o trabalho com layouts.
+   */
   box-sizing: border-box;
 }
