@@ -5,6 +5,7 @@ import {
   FloatingAvatars,
   FloatingAvatar,
   LoginCard,
+  Logo,
   Title,
   StyledTextField,
   LoginButton,
@@ -119,7 +120,7 @@ const Login = () => {
       </FloatingAvatars>
 
       <LoginCard elevation={0}>
-        <img src="./public/logo-faex-hub.png" alt="Logo FAEX Hub" />
+        <Logo src="/logo-faex-hub.png" alt="Logo FAEX Hub" />
 
         <Title variant="h2">Entre na sua Conta</Title>
 

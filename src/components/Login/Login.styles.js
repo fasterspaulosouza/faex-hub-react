@@ -49,6 +49,18 @@ export const FloatingAvatar = styled(Box)`
   }
 `;
 
+export const Logo = styled.img`
+  display: block;
+  max-width: 180px;
+  height: auto;
+  margin: 0 auto 24px;
+
+  @media (min-width: 1024px) {
+    max-width: 200px;
+    margin-bottom: 28px;
+  }
+`;
+
 export const LoginCard = styled(Card)`
   && {
     background: rgba(255, 255, 255, 0.97);
